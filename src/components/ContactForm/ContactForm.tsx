@@ -61,7 +61,7 @@ const ContactForm = () => {
         <div className="w-full max-h-screen mx-auto p-4 md:p-6">
             <div className="space-y-2 text-4xl sm:text-5xl md:text-6xl font-light text-center md:text-left">
                 <h2>¿Tienes <span className="text-blue-500">preguntas?</span></h2>
-                <h2>¿Estas <span className="text-blue-500">listo?</span></h2>
+                <h2>¿Estás <span className="text-blue-500">listo?</span></h2>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-10 sm:mt-0 py-5 sm:py-8 md:py-16">
                 <div className="space-y-2">
