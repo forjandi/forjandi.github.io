@@ -31,22 +31,16 @@ const ContactForm = () => {
         }
 
         setIsSending(true)
-        // Lógica de envío real
         console.log('Enviando...', formData)
 
         setTimeout(() => {
-            // Indicar que se esta enviando
             setIsSent(true)
             setIsSending(false)
 
-
-
             setTimeout(() => {
-                // Indicar que se envió correctamente
                 setIsSent(false)
                 setEmptyFields([])
 
-                // Resetear el formulario después del envío
                 setFormData({
                     user_name: '',
                     company_name: '',
