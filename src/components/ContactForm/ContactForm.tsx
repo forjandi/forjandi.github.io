@@ -1,37 +1,33 @@
 import * as React from "react"
 import { InputForm } from "@/components/ui/inputForm"
-import { ButtonForm } from "../ui/buttonForm"
+import { ButtonForm } from "@/components/ui/buttonForm"
+import type { FormData } from './ContactForm.types'
+import { formPatterns, initialFormData } from './ContactForm.config'
+import { validateInput, getEmptyRequiredFields } from './ContactForm.utils'
 
 const ContactForm = () => {
-
     const [isSending, setIsSending] = React.useState<boolean>(false)
     const [isSent, setIsSent] = React.useState<boolean>(false)
     const [emptyFields, setEmptyFields] = React.useState<string[]>([])
-    const [formData, setFormData] = React.useState({
-        user_name: '',
-        company_name: '',
-        user_email: '',
-        user_phone: ''
-    })
+    const [formData, setFormData] = React.useState<FormData>(initialFormData)
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setFormData({
-            ...formData,
-            [e.target.id]: e.target.value
-        })
+        const { id, value } = e.target;
+        
+        if (validateInput(value, id as keyof FormData)) {
+            setFormData({
+                ...formData,
+                [id]: value
+            });
+        }
     }
 
     const handleSubmit = () => {
-        // Validación formulario
-        const requiredFields = {
-            user_name: !formData.user_name,
-            user_email: !formData.user_email
-        }
-        const emptyFields: string[] = Object.keys(requiredFields).filter(key => requiredFields[key as keyof typeof requiredFields])
+        const emptyRequiredFields = getEmptyRequiredFields(formData);
 
-        if (emptyFields.length > 0) {
-            setEmptyFields(emptyFields)
-            return
+        if (emptyRequiredFields.length > 0) {
+            setEmptyFields(emptyRequiredFields);
+            return;
         }
 
         setIsSending(true)
@@ -62,12 +58,12 @@ const ContactForm = () => {
     }
 
     return (
-        <div className="w-full max-h-screen max-w-7xl mx-auto p-4 md:p-6">
-            <div className="space-y-2">
-                <h2 className="text-4xl md:text-6xl font-light">¿Tienes <span className="text-blue-500">preguntas?</span></h2>
-                <h2 className="text-4xl md:text-6xl font-light">¿Estas <span className="text-blue-500">listo?</span></h2>
+        <div className="w-full max-h-screen mx-auto p-4 md:p-6">
+            <div className="space-y-2 text-4xl sm:text-5xl md:text-6xl font-light text-center md:text-left">
+                <h2>¿Tienes <span className="text-blue-500">preguntas?</span></h2>
+                <h2>¿Estas <span className="text-blue-500">listo?</span></h2>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 py-16">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-10 sm:mt-0 py-5 sm:py-8 md:py-16">
                 <div className="space-y-2">
 
                 </div>
@@ -79,7 +75,7 @@ const ContactForm = () => {
                         textSize="text-sm md:text-base"
                         onChange={handleChange}
                         value={formData.user_name}
-                        required
+                        required={formPatterns.user_name.required}
                         emptyFields={emptyFields}
                     />
                     <InputForm
@@ -89,6 +85,8 @@ const ContactForm = () => {
                         textSize="text-sm md:text-base"
                         onChange={handleChange}
                         value={formData.company_name}
+                        required={formPatterns.company_name.required}
+                        emptyFields={emptyFields}
                     />
                     <InputForm
                         id="user_email"
@@ -97,7 +95,7 @@ const ContactForm = () => {
                         textSize="text-sm md:text-base"
                         onChange={handleChange}
                         value={formData.user_email}
-                        required
+                        required={formPatterns.user_email.required}
                         emptyFields={emptyFields}
                     />
                     <InputForm
@@ -107,6 +105,8 @@ const ContactForm = () => {
                         textSize="text-sm md:text-base"
                         onChange={handleChange}
                         value={formData.user_phone}
+                        required={formPatterns.user_phone.required}
+                        emptyFields={emptyFields}
                     />
                 </div>
             </div>

@@ -3,11 +3,13 @@ import { ModeToggle } from "../components/ModeToggle";
 import Welcome from "../components/Welcome";
 import NavigationBar from '../components/NavigationBar.astro'
 import Layout from "../layouts/Layout.astro";
-import ContactForm from "@/components/views/ContactForm";
+import { ContactForm } from "@/components/ContactForm";
 ---
 
 <Layout>
   <NavigationBar/>
-  <Welcome />
-  <ContactForm client:load/>
+  <div class="w-11/12 max-w-7xl mx-auto">
+    <Welcome />
+    <ContactForm client:load/>
+  </div>
 </Layout>

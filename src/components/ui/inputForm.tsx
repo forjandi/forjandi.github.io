@@ -15,7 +15,7 @@ const InputForm = React.forwardRef<HTMLInputElement, InputFormProps>(
                 <input
                     type={props.type || "text"}
                     className={cn(
-                        "flex w-full border-b border-input bg-transparent px-3 py-2 text-gray-400",
+                        "flex w-full border-b border-gray-500 bg-transparent px-3 py-2 text-gray-400",
                         "focus-visible:outline-none focus-visible:border-b-2 focus-visible:border-blue-500",
                         "peer placeholder-transparent",
                         textSize,
@@ -26,8 +26,8 @@ const InputForm = React.forwardRef<HTMLInputElement, InputFormProps>(
                 />
                 <label
                     className={cn(
-                        "absolute left-0 -top-6 text-xs transition-all pointer-events-none text-gray-400",
-                        "peer-placeholder-shown:text-base peer-placeholder-shown:text-muted-foreground peer-placeholder-shown:top-2",
+                        "absolute left-0 -top-6 text-xs sm:text-xs transition-all pointer-events-none text-gray-400",
+                        "peer-placeholder-shown:text-sm sm:peer-placeholder-shown:text-base peer-placeholder-shown:text-muted-foreground peer-placeholder-shown:top-2",
                         "peer-focus:left-0 peer-focus:-top-6 peer-focus:text-xs peer-focus:text-foreground"
                     )}
                 >
