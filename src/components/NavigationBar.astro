@@ -1,9 +1,13 @@
 ---
 import { ModeToggle } from "./ModeToggle";
+import Button from "./global/Button";
 ---
 
 <nav class="p-4 flex justify-between">
     <h1>Forjandi</h1>
+
+    <Button onClick={() => alert("Botón clickeado")}>Haz clic</Button>
+    
     <ModeToggle client:load />
 </nav>
 
