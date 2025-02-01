@@ -13,10 +13,11 @@ const navItems = [
 <header class="fixed top-0 w-full transition-all duration-300" id="navbar">
   <!-- Navbar principal -->
   <nav class="p-4 flex items-center justify-between bg-white/80 dark:bg-black/80 backdrop-blur-sm relative z-30">
+    <!-- Sección izquierda -->
     <div class="flex items-center gap-4">
       <button
         id="menuButton"
-        class="text-primary dark:text-white font-size-base"
+        class="text-primary dark:text-white font-size-base lg:hidden"
         aria-label="Menu"
       >
         <svg
@@ -38,7 +39,29 @@ const navItems = [
       <a href="/" class="text-primary dark:text-white font-size-base">Forjandi</a>
     </div>
 
-    <ModeToggle client:load />
+    <!-- Navegación central - visible solo en desktop -->
+    <div class="hidden lg:flex items-center gap-8">
+      {
+        navItems.map((item) => (
+          <a
+            href={item.href}
+            class="text-primary dark:text-white font-size-base hover:text-primary/80 dark:hover:text-white/80 transition-colors"
+          >
+            {item.label}
+          </a>
+        ))
+      }
+    </div>
+
+    <!-- Sección derecha -->
+    <div class="flex items-center gap-4">
+      <ModeToggle client:load />
+      <div class="hidden lg:block">
+        <Button client:load onClick={() => alert("Botón clickeado")}>
+          Contáctanos
+        </Button>
+      </div>
+    </div>
   </nav>
 
   <!-- Overlay con blur (movido dentro del header, antes del menú móvil) -->
