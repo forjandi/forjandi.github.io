@@ -63,4 +63,28 @@
   body {
     @apply bg-background text-foreground;
   }
+
+  .title-desktop {
+    @apply font-light text-6xl; /*font-size: 55px*/
+  }
+  
+  .body-desktop {
+    @apply text-xl font-normal;
+  }
+
+  .title-tablet {
+    @apply font-light text-4xl;
+  }
+  
+  .body-tablet {
+    @apply text-base font-normal;
+  }
+
+  .title-mobile {
+    @apply font-light text-3xl;
+  }
+
+  .body-mobile {
+    @apply text-base font-normal; /*font-size: 17px*/
+  }
 }
