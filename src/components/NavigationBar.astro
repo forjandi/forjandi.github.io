@@ -4,9 +4,9 @@ import Button from "./global/Button";
 
 // Datos de navegación
 const navItems = [
-  { label: "Services", href: "/services" },
-  { label: "About us", href: "/about" },
-  { label: "Noticias", href: "/noticias" },
+  { label: "Services", href: "#services" },
+  { label: "About us", href: "#about" },
+  { label: "Noticias", href: "#noticias" },
 ];
 ---
 
@@ -187,6 +187,31 @@ const navItems = [
     if (touchEndY < touchStartY && isMenuOpen) {
       closeMenu();
     }
+  });
+
+  // Función para scroll suave
+  const scrollToSection = (e: Event) => {
+    const link = e.currentTarget as HTMLAnchorElement;
+    const href = link.getAttribute('href');
+    
+    if (href?.startsWith('#')) {
+      e.preventDefault();
+      const targetId = href.replace('#', '');
+      const element = document.getElementById(targetId);
+      
+      if (element) {
+        closeMenu(); // Cerrar menú si está abierto
+        element.scrollIntoView({ 
+          behavior: 'smooth',
+          block: 'start'
+        });
+      }
+    }
+  };
+
+  // Agregar event listeners a todos los enlaces de navegación
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', scrollToSection);
   });
 </script>
 
