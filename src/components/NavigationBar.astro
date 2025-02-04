@@ -2,7 +2,6 @@
 import { ModeToggle } from "./ModeToggle";
 import Button from "./global/Button";
 
-// Datos de navegación
 const navItems = [
   { label: "Services", href: "#services" },
   { label: "About us", href: "#about" },
@@ -11,9 +10,9 @@ const navItems = [
 ---
 
 <header class="fixed top-0 w-full transition-all duration-300" id="navbar">
-  <!-- Navbar principal -->
+  <!-- Main navbar -->
   <nav class="p-4 flex items-center justify-between bg-white/80 dark:bg-black/80 backdrop-blur-sm relative z-30">
-    <!-- Sección izquierda -->
+    <!-- Left section -->
     <div class="flex items-center gap-4">
       <button
         id="menuButton"
@@ -39,7 +38,7 @@ const navItems = [
       <a href="/" class="text-primary dark:text-white font-size-base">Forjandi</a>
     </div>
 
-    <!-- Navegación central - visible solo en desktop -->
+    <!-- Central navigation - visible only on desktop -->
     <div class="hidden lg:flex items-center gap-8">
       {
         navItems.map((item) => (
@@ -53,7 +52,7 @@ const navItems = [
       }
     </div>
 
-    <!-- Sección derecha -->
+    <!-- Right section -->
     <div class="flex items-center gap-4">
       <ModeToggle client:load />
       <div class="hidden lg:block">
@@ -64,19 +63,19 @@ const navItems = [
     </div>
   </nav>
 
-  <!-- Overlay con blur (movido dentro del header, antes del menú móvil) -->
+  <!-- Overlay with blur (moved inside the header, before the mobile menu) -->
   <div
     id="overlay"
     class="fixed inset-0 bg-black/30 backdrop-blur-sm opacity-0 pointer-events-none transition-opacity duration-300 z-40"
   >
   </div>
 
-  <!-- Menú móvil expandible -->
+  <!-- Expandable mobile menu -->
   <div
     id="mobileMenu"
     class="fixed bottom-0 left-0 w-full bg-white dark:bg-black transform translate-y-full transition-transform duration-300 ease-in-out z-50"
   >
-    <!-- Línea indicadora de scroll -->
+    <!-- Scroll indicator line -->
     <div class="w-full flex justify-center pt-2">
       <div class="w-10 h-1 bg-gray-300 dark:bg-gray-700 rounded-full mb-2 animate-pulse"></div>
     </div>
@@ -98,7 +97,6 @@ const navItems = [
 </header>
 
 <style>
-  /* Clase utilitaria para el tamaño de fuente */
   .font-size-base {
     font-size: 17px;
   }
@@ -112,7 +110,7 @@ const navItems = [
     }
   }
 
-  /* Animación del pulso para la línea */
+  /* Pulse animation for the line */
   @keyframes pulse {
     0%, 100% { opacity: 1; }
     50% { opacity: 0.5; }
@@ -126,12 +124,12 @@ const navItems = [
   const overlay = document.getElementById("overlay");
   let isMenuOpen = false;
 
-  // Toggle del menú móvil
+  // Toggle the mobile menu
   menuButton?.addEventListener("click", () => {
     toggleMenu();
   });
 
-  // Función para cerrar el menú
+  // Function to close the menu
   const closeMenu = () => {
     if (isMenuOpen) {
       isMenuOpen = false;
@@ -140,7 +138,7 @@ const navItems = [
     }
   };
 
-  // Función para toggle el menú
+  // Function to toggle the menu
   const toggleMenu = () => {
     isMenuOpen = !isMenuOpen;
     mobileMenu?.classList.toggle("translate-y-full", !isMenuOpen);
@@ -152,13 +150,13 @@ const navItems = [
     }
   };
 
-  // Cerrar menú al hacer click en el overlay
+  // Close menu when clicking on the overlay
   overlay?.addEventListener("click", closeMenu);
 
-  // Cerrar menú al hacer scroll
+  // Close menu when scrolling
   document.addEventListener("scroll", closeMenu);
 
-  // Efecto de scroll para el borde
+  // Scroll effect for the border
   let lastScroll = 0;
   window.addEventListener("scroll", () => {
     const currentScroll = window.pageYOffset;
@@ -172,7 +170,7 @@ const navItems = [
     lastScroll = currentScroll;
   });
 
-  // Detectar scroll en el menú móvil
+  // Detect scroll in the mobile menu
   let touchStartY = 0;
   let touchEndY = 0;
 
@@ -183,13 +181,13 @@ const navItems = [
   mobileMenu?.addEventListener('touchmove', (e) => {
     touchEndY = e.touches[0].clientY;
     
-    // Si el usuario hace scroll hacia abajo
+    // If the user scrolls down
     if (touchEndY < touchStartY && isMenuOpen) {
       closeMenu();
     }
   });
 
-  // Función para scroll suave
+  // Function to smooth scroll
   const scrollToSection = (e: Event) => {
     const link = e.currentTarget as HTMLAnchorElement;
     const href = link.getAttribute('href');
@@ -209,7 +207,7 @@ const navItems = [
     }
   };
 
-  // Agregar event listeners a todos los enlaces de navegación
+  // Add event listeners to all navigation links
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', scrollToSection);
   });
