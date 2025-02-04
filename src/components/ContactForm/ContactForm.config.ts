@@ -17,12 +17,17 @@ export const formPatterns: { [key in keyof FormData]: PatternConfig } = {
     user_phone: {
         regex: /^[0-9+\-\s]*$/,
         required: false
-    }
+    },
+    message: {
+        regex: /^[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ\s.,!?@#&*()\-]*$/,
+        required: true
+    },
 };
 
 export const initialFormData: FormData = {
     user_name: '',
-    company_name: '',
     user_email: '',
-    user_phone: ''
+    company_name: '',
+    user_phone: '',
+    message: ''
 };

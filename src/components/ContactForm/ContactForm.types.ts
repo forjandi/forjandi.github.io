@@ -6,7 +6,8 @@ export interface PatternConfig {
 
 export interface FormData {
     user_name: string;
-    company_name: string;
     user_email: string;
+    company_name: string;
     user_phone: string;
+    message: string;
 }
