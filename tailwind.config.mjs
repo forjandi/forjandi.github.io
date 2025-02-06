@@ -4,6 +4,12 @@ export default {
   content: ["./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}"],
   theme: {
     extend: {
+      container: {
+        center: true,
+        screens: {
+          xl: "1200px",
+        },
+      },
       fontFamily: {
         inter: ["Inter", "sans-serif"],
         interMedium: ["Inter-Medium", "sans-serif"],
