@@ -1,7 +1,9 @@
 export interface PatternConfig {
     regex: RegExp;
+    regex_format?: RegExp;
     errorMessage?: string;
     required: boolean;
+    label: string;
 }
 
 export interface FormData {
