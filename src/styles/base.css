@@ -73,7 +73,7 @@
     @apply font-light;
   }
 
-  h1 {
+  h2 {
     @apply text-[30px] lg:text-[55px] leading-[50px] lg:leading-[120px] uppercase;
   }
 
