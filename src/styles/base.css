@@ -60,36 +60,24 @@
 @layer base {
   * {
     @apply border-border;
+    font-family: "Inter", sans-serif;
   }
 
   body {
     @apply bg-background text-foreground;
-    font-family: "Inter", sans-serif;
   }
 
-  .title-desktop {
-    font-size: 55px;
+  h1,
+  h2,
+  h3 {
     @apply font-light;
   }
-  
-  .body-desktop {
-    @apply text-xl font-normal;
+
+  h1 {
+    @apply text-[30px] lg:text-[55px] leading-[50px] lg:leading-[120px] uppercase;
   }
 
-  .title-tablet {
-    @apply font-light text-4xl;
-  }
-  
-  .body-tablet {
-    @apply text-base font-normal;
-  }
-
-  .title-mobile {
-    @apply font-light text-3xl;
-  }
-
-  .body-mobile {
-    font-size: 17px;
-    @apply font-normal;
+  h3 {
+    @apply text-[30px] leading-[35px];
   }
 }
