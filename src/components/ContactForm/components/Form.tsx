@@ -3,15 +3,14 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import Button from "../../global/Button";
-import { validateInput, getEmptyRequiredFields, validateFormat } from "../utils/Form.utils";
+import { validateInput, getEmptyRequiredFields, validateFormat, sendMail } from "../utils/Form.utils";
 import type { FormData } from "../types/Form.types";
 import { formFieldsPatterns, initialFormData } from "../config/Form.config";
 
 const SimpleComponent: React.FC = () => {
 	const [formData, setFormData] = React.useState<FormData>(initialFormData);
 	const [getErrorsFields, setErrorsFields] = React.useState<string[]>([]);
-	const [isSending, setIsSending] = React.useState<boolean>(false);
-	const [isSent, setIsSent] = React.useState<boolean>(false);
+	const [sendStatus, setSendStatus] = React.useState<'sending' | 'sent' | 'error' | null>(null);
 
 	const handleChange = (
 		e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -26,7 +25,7 @@ const SimpleComponent: React.FC = () => {
 		}
 	};
 
-	const handleSubmit = () => {
+	const handleSubmit = async () => {
 		setErrorsFields([]);
 		const emptyFields = getEmptyRequiredFields(formData);
 		const invalidFormatFields = validateFormat(formData);
@@ -36,28 +35,29 @@ const SimpleComponent: React.FC = () => {
 			setErrorsFields(errorsFields);
 			return;
 		}
-		setIsSending(true);
+
+		setSendStatus('sending');
+		const response = await sendMail(formData);
+		if (response.ok) {
+			setSendStatus('sent');
+			setFormData({
+				user_name: "",
+				user_email: "",
+				company_name: "",
+				user_phone: "",
+				message: "",
+			});
+		} else {
+			setSendStatus('error');
+		}
 
 		setTimeout(() => {
-			setIsSending(false);
-			setIsSent(true);
-
-			setTimeout(() => {
-				setIsSent(false);
-				setFormData({
-					user_name: "",
-					company_name: "",
-					user_email: "",
-					user_phone: "",
-					message: "",
-				});
-			}, 3000);
+			setSendStatus(null);
 		}, 3000);
 	};
 
 	return (
 		<div className="w-full p-5 flex flex-col gap-4 shadow-lg rounded-xl backdrop-blur-xs bg-stone-100 dark:bg-zinc-800">
-			<div></div>
 			<div className="grid w-full items-center gap-1.5">
 				{Object.keys(initialFormData).map((key) => (
 					<div className="grid w-full items-center gap-1.5" key={key}>
@@ -110,15 +110,15 @@ const SimpleComponent: React.FC = () => {
 				<Button
 					onClick={handleSubmit}
 					className="uppercase px-4 py-2 w-32 relative overflow-hidden"
-					disabled={isSending || isSent}
+					disabled={sendStatus != null}
 				>
 					<span
-						className={`${isSending || isSent ? "opacity-0" : "opacity-100"}`}
+						className={`transition ${sendStatus != null ? "opacity-0 duration-100" : "opacity-100 duration-500"}`}
 					>
 						Enviar
 					</span>
 					<span
-						className={`left-0 top-0 absolute flex items-center animate-spin justify-center w-full h-full ${isSending ? "opacity-100" : "opacity-0"}`}
+						className={`left-0 top-0 absolute flex items-center animate-spin justify-center w-full h-full ${sendStatus == 'sending' ? "opacity-100" : "opacity-0"}`}
 					>
 						<svg
 							className={`w-6 h-6  opacity-100 scale-100 `}
@@ -146,7 +146,7 @@ const SimpleComponent: React.FC = () => {
 							xmlns="http://www.w3.org/2000/svg"
 							viewBox="0 0 24 24"
 							fill="none"
-							className={`stroke-current w-6 h-6 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-0 scale-0 transition-all duration-300 ${isSent
+							className={`stroke-current w-6 h-6 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-0 scale-0 transition-all duration-300 ${sendStatus === 'sent'
 								? "opacity-100 scale-100"
 								: "opacity-0 scale-0"
 								}`}
@@ -159,7 +159,29 @@ const SimpleComponent: React.FC = () => {
 							/>
 						</svg>
 					</span>
+					<span className="text-zinc-300 dark:text-slate-900">
+						<svg
+							xmlns="http://www.w3.org/2000/svg"
+							className={`w-6 h-6 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 ${sendStatus === 'error'
+								? "opacity-100 scale-100"
+								: "opacity-0 scale-0"
+								}`}
+							fill="none"
+							viewBox="0 0 24 24"
+							stroke="currentColor"
+						>
+							<path
+								strokeLinecap="round"
+								strokeLinejoin="round"
+								strokeWidth={2}
+								d="M6 18L18 6M6 6l12 12"
+							/>
+						</svg>
+					</span>
 				</Button>
+				<div className={`mt-5 ${sendStatus === 'error' ? "opacity-100 scale-100" : "opacity-0 scale-0"}`}>
+					<p className="text-red-400 text-center">Ups! Hubo un error, vuelve a intentarlo.</p>
+				</div>
 			</div>
 		</div>
 	);

@@ -31,6 +31,11 @@ All commands are run from the root of the project, from a terminal:
 | `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
 | `npm run astro -- --help` | Get help using the Astro CLI                     |
 
+## 📄 Environment Variables
+A `.env` file is required for the project to function properly. This file should contain the following variables:
+USER_MAIL=your_email@example.com
+USER_PASSWORD=your_password
+
 ## 👀 Want to learn more?
 
 Feel free to check the [astro documentation](https://docs.astro.build) 

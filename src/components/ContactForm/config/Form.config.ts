@@ -15,7 +15,7 @@ export const formFieldsPatterns: { [key in keyof FormData]: PatternConfig } = {
         label: 'Correo'
     },
     company_name: {
-        regex: /^[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ\s]*$/,
+        regex: /^[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ'\s]*$/,
         required: false,
         label: 'Nombre de empresa'
     },
