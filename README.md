@@ -33,8 +33,17 @@ All commands are run from the root of the project, from a terminal:
 
 ## 📄 Environment Variables
 A `.env` file is required for the project to function properly. This file should contain the following variables:
-USER_MAIL=your_email@example.com
-USER_PASSWORD=your_password
+
+```
+USER_SENDER_EMAIL=sender@example.com
+USER_SENDER_PASSWORD=sender_password
+USER_RECEIVER_EMAIL=receiver@example.com
+
+EMAIL_HOST=smtp.example.com
+EMAIL_PORT=587
+EMAIL_SECURE=false
+```
+
 
 ## 👀 Want to learn more?
 

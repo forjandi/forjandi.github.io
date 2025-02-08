@@ -9,14 +9,14 @@ export const POST: APIRoute = async ({ request }: { request: Request }) => {
 		port: 587,
 		secure: false,
 		auth: {
-			user: import.meta.env.USER_MAIL,
-			pass: import.meta.env.USER_PASSWORD,
+			user: import.meta.env.USER_SENDER_EMAIL,
+			pass: import.meta.env.USER_SENDER_PASSWORD,
 		},
 	});
 
 	const template = {
-		from: process.env.USER_MAIL,
-		to: formData.user_email,
+		from: import.meta.env.USER_SENDER_EMAIL,
+		to: import.meta.env.USER_RECEIVER_EMAIL,
 		subject: "Nuevo contacto desde el formulario",
 		html: `
 		<p>Nombre: ${formData.user_name}</p>

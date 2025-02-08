@@ -7,16 +7,13 @@ import { validateInput, getEmptyRequiredFields, validateFormat, sendMail } from 
 import type { FormData } from "../types/Form.types";
 import { formFieldsPatterns, initialFormData } from "../config/Form.config";
 
-const SimpleComponent: React.FC = () => {
+const FormComponent: React.FC = () => {
 	const [formData, setFormData] = React.useState<FormData>(initialFormData);
 	const [getErrorsFields, setErrorsFields] = React.useState<string[]>([]);
 	const [sendStatus, setSendStatus] = React.useState<'sending' | 'sent' | 'error' | null>(null);
 
-	const handleChange = (
-		e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-	) => {
+	const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
 		const { id, value } = e.target;
-
 		if (validateInput(value, id as keyof FormData)) {
 			setFormData({
 				...formData,
@@ -57,7 +54,7 @@ const SimpleComponent: React.FC = () => {
 	};
 
 	return (
-		<div className="w-full p-5 flex flex-col gap-4 shadow-lg rounded-xl backdrop-blur-xs bg-stone-100 dark:bg-zinc-800">
+		<div className="w-full p-5 flex flex-col gap-4 shadow-lg md:shadow-none rounded-xl backdrop-blur-xs bg-stone-100 dark:bg-zinc-800 bg-opacity-50 dark:bg-opacity-100">
 			<div className="grid w-full items-center gap-1.5">
 				{Object.keys(initialFormData).map((key) => (
 					<div className="grid w-full items-center gap-1.5" key={key}>
@@ -66,35 +63,28 @@ const SimpleComponent: React.FC = () => {
 							className="text-lg lg:text-xl font-normal text-slate-900 dark:text-zinc-300"
 						>
 							{formFieldsPatterns[key as keyof FormData].label}
-							{formFieldsPatterns[key as keyof FormData]
-								.required && "*"}
+							{formFieldsPatterns[key as keyof FormData].required && "*"}
 						</Label>
 						{key === "message" ? (
 							<Textarea
 								id={key}
-								className="border-slate-200 dark:border-slate-300 shadow-none"
+								className="border-slate-200 dark:border-slate-300 shadow-none bg-[#F5F5F4] bg-opacity-50 dark:bg-zinc-800 dark:bg-opacity-100"
 								onChange={handleChange}
 								value={formData[key as keyof FormData]}
-								required={
-									formFieldsPatterns[key as keyof FormData]
-										.required
-								}
+								required={formFieldsPatterns[key as keyof FormData].required}
 							/>
 						) : (
 							<Input
 								type={key === "user_email" ? "email" : "text"}
 								id={key}
-								className="border-slate-200 dark:border-slate-300 shadow-none"
+								className="border-slate-200 dark:border-slate-300 shadow-none bg-[#F5F5F4] bg-opacity-50 dark:bg-zinc-800"
 								onChange={handleChange}
 								value={formData[key as keyof FormData]}
-								required={
-									formFieldsPatterns[key as keyof FormData]
-										.required
-								}
+								required={formFieldsPatterns[key as keyof FormData].required}
 							/>
 						)}
 						<p
-							className={`transition-opacity duration-150 text-xs text-muted-foreground text-red-500 dark:text-red-800 ${getErrorsFields.indexOf(key) != -1
+							className={`transition-opacity duration-150 text-xs text-muted-foreground text-red-500 dark:text-red-400 ${getErrorsFields.indexOf(key) != -1
 								? "opacity-100"
 								: "opacity-0"
 								}`}
@@ -109,8 +99,7 @@ const SimpleComponent: React.FC = () => {
 			<div className="text-right w-full">
 				<Button
 					onClick={handleSubmit}
-					className="uppercase px-4 py-2 w-32 relative overflow-hidden"
-					disabled={sendStatus != null}
+					className={`px-4 py-2 w-32 relative overflow-hidden ${sendStatus != null && 'pointer-events-none'}`}
 				>
 					<span
 						className={`transition ${sendStatus != null ? "opacity-0 duration-100" : "opacity-100 duration-500"}`}
@@ -187,4 +176,4 @@ const SimpleComponent: React.FC = () => {
 	);
 };
 
-export default SimpleComponent;
+export default FormComponent;
