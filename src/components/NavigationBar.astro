@@ -9,30 +9,27 @@ const navItems = [
 ];
 ---
 
-<header class="fixed top-0 w-full transition-all duration-300" id="navbar">
+<header class="fixed top-0 w-full transition-all duration-300 bg-white dark:bg-neutral-900" id="navbar">
 
-  <nav class="p-4 flex items-center justify-between bg-white/80 dark:bg-black/80 backdrop-blur-sm relative z-30">
+  <nav class="container p-4 flex items-center justify-between relative z-30">
 
     <div class="flex items-center gap-4">
       <button
         id="menuButton"
-        class="text-primary dark:text-white font-size-base lg:hidden"
+        class="dark:text-white font-size-base lg:hidden"
         aria-label="Menu"
       >
-        <svg
+        <svg 
+          width="24" 
+          height="24" 
+          viewBox="0 0 24 24" 
+          fill="none" 
           xmlns="http://www.w3.org/2000/svg"
-          width="24"
-          height="24"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
+          class="text-[#111928] dark:text-white"
         >
-          <line x1="4" x2="20" y1="12" y2="12"></line>
-          <line x1="4" x2="20" y1="6" y2="6"></line>
-          <line x1="4" x2="20" y1="18" y2="18"></line>
+          <path d="M22.5 11.175H11.7375C11.2875 11.175 10.875 11.55 10.875 12.0375C10.875 12.4875 11.25 12.9 11.7375 12.9H22.5C22.95 12.9 23.3625 12.525 23.3625 12.0375C23.3625 11.55 22.95 11.175 22.5 11.175Z" fill="currentColor"/>
+          <path d="M22.5002 17.55H1.5002C1.0502 17.55 0.637695 17.925 0.637695 18.4125C0.637695 18.9 1.0127 19.275 1.5002 19.275H22.5002C22.9502 19.275 23.3627 18.9 23.3627 18.4125C23.3627 17.925 22.9502 17.55 22.5002 17.55Z" fill="currentColor"/>
+          <path d="M1.5002 6.4501H22.5002C22.9502 6.4501 23.3627 6.0751 23.3627 5.5876C23.3627 5.1001 22.9877 4.7251 22.5002 4.7251H1.5002C1.0502 4.7251 0.637695 5.1001 0.637695 5.5876C0.637695 6.0751 1.0502 6.4501 1.5002 6.4501Z" fill="currentColor"/>
         </svg>
       </button>
       <a href="/" class="font-bold dark:text-white font-size-base">Forjandi</a>
@@ -43,7 +40,7 @@ const navItems = [
         navItems.map((item) => (
           <a
             href={item.href}
-            class="text-primary dark:text-white font-size-base hover:text-primary/80 dark:hover:text-white/80 transition-colors"
+            class=" dark:text-white dark:hover:text-white/80 transition-colors"
           >
             {item.label}
           </a>
@@ -81,7 +78,7 @@ const navItems = [
         navItems.map((item) => (
           <a
             href={item.href}
-            class="text-primary dark:text-white font-size-base py-2"
+            class="dark:text-white py-2"
           >
             {item.label}
           </a>
