@@ -1,14 +1,18 @@
 ---
-import NavigationBar from "../components/NavigationBar.astro";
+import Hero from "../components/Hero";
+import NavigationBar from '../components/NavigationBar.astro'
 import Layout from "../layouts/Layout.astro";
 import About from "@/components/About.astro";
+import Footer from "@/components/Footer/Footer.astro";
 import { ContactForm } from "@/components/ContactForm";
 ---
 
 <Layout>
   <NavigationBar />
-  <div class="w-11/12 max-w-7xl mx-auto">
+  <Hero/>
+  <div class="w-11/12 max-w-7xl mx-auto h-full">
     <About />
     <ContactForm client:load />
   </div>
+  <Footer/>
 </Layout>
