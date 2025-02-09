@@ -2,6 +2,11 @@
 export default {
   darkMode: ["class"],
   content: ["./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}"],
+  safelist:[
+    'col-span-2',
+    'col-span-3',
+    'col-span-4'
+  ],
   theme: {
     extend: {
       container: {

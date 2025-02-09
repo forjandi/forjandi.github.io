@@ -74,10 +74,14 @@
   }
 
   h2 {
-    @apply text-[30px] lg:text-[55px] leading-[50px] lg:leading-[120px] uppercase;
+    @apply my-[20px] text-[30px] lg:text-[55px] leading-[50px] lg:leading-[120px] uppercase;
   }
 
   h3 {
     @apply text-[30px] leading-[35px];
+  }
+
+  section {
+    @apply py-20 sm:py-16 md:py-20 lg:py-32;
   }
 }
