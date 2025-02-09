@@ -3,7 +3,7 @@ import Form from "./components/Form";
 
 const ContactForm = () => {
   return (
-    <section id="contact" className="container space-y-5 md:space-y-10">
+    <section id="contact" className="container">
       <h2 className="uppercase text-slate-900 dark:text-slate-100 text-center md:text-left">
         Contáctanos
       </h2>
@@ -15,7 +15,7 @@ const ContactForm = () => {
           <CommunicationChannels />
         </div>
         <div className="w-full md:2/6 lg:w-3/6">
-          <Form />
+          <Form/>
         </div>
       </div>
     </section>

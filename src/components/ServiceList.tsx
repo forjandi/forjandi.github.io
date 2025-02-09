@@ -36,12 +36,12 @@ const ServiceList = () => {
     <div className="gap-[20px] md:grid md:grid-cols-6">
       {services.map((service, index) => {
         if (!service)
-          return <ServiceCard className="col-span-2 hidden md:block" />;
+          return <ServiceCard className="col-span-2 hidden md:block" key={index}/>;
 
         const { img, title, description, colSpan } = service;
 
         return (
-          <ServiceCard className={`col-span-${colSpan}`}>
+          <ServiceCard className={`col-span-${colSpan}`} key={index}>
             <div className="flex flex-col items-center md:items-start md:flex-row md:justify-between gap-[20px]">
               <h3 className="md:text-left">{title}</h3>
               <img
