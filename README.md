@@ -31,6 +31,20 @@ All commands are run from the root of the project, from a terminal:
 | `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
 | `npm run astro -- --help` | Get help using the Astro CLI                     |
 
+## 📄 Environment Variables
+A `.env` file is required for the project to function properly. This file should contain the following variables:
+
+```
+USER_SENDER_EMAIL=sender@example.com
+USER_SENDER_PASSWORD=sender_password
+USER_RECEIVER_EMAIL=receiver@example.com
+
+EMAIL_HOST=smtp.example.com
+EMAIL_PORT=587
+EMAIL_SECURE=false
+```
+
+
 ## 👀 Want to learn more?
 
 Feel free to check the [astro documentation](https://docs.astro.build) 
