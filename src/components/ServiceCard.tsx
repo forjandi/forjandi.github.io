@@ -6,7 +6,7 @@ interface ServiceCardProps {
 const ServiceCard = ({ className, children }: ServiceCardProps) => {
   return (
     <div
-      className={`border border-slate-300 text-center rounded-lg p-[20px] mb-[20px] md:mb-0 ${className || ""}`}
+      className={`bg-background/80 backdrop-blur-sm border  text-center rounded-lg p-[20px] mb-[20px] md:mb-0 ${className || ""}`}
     >
       {children}
     </div>

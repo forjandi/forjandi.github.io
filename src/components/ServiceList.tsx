@@ -1,7 +1,7 @@
-import ServiceCard from "./ServiceCard";
 import aiImage from "../assets/ai.png";
 import apiImage from "../assets/apis.png";
 import e2eImage from "../assets/e2e.png";
+import ServiceCard from "./ServiceCard";
 
 const services = [
   {
@@ -33,10 +33,10 @@ const services = [
 
 const ServiceList = () => {
   return (
-    <div className="gap-[20px] md:grid md:grid-cols-6">
+    <div className="gap-[20px] md:grid md:grid-cols-6 relative -z-30">
       {services.map((service, index) => {
         if (!service)
-          return <ServiceCard className="col-span-2 hidden md:block" key={index}/>;
+          return <ServiceCard className="col-span-2 hidden md:block" key={index} />;
 
         const { img, title, description, colSpan } = service;
 
