@@ -9,27 +9,36 @@ const navItems = [
 ];
 ---
 
-<header class="fixed top-0 w-full transition-all duration-300 bg-stone-200 dark:bg-neutral-900" id="navbar">
-
-  <nav class="container p-4 flex items-center justify-between relative z-30">
-
+<header
+  class="fixed top-0 w-full transition-all duration-300 bg-background/80"
+  id="navbar"
+>
+  <nav
+    class="container py-3 flex items-center justify-between relative z-50 backdrop-blur-sm"
+  >
     <div class="flex items-center gap-4">
       <button
         id="menuButton"
         class="dark:text-white font-size-base lg:hidden"
         aria-label="Menu"
       >
-        <svg 
-          width="24" 
-          height="24" 
-          viewBox="0 0 24 24" 
-          fill="none" 
+        <svg
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
           xmlns="http://www.w3.org/2000/svg"
           class="text-[#111928] dark:text-white"
         >
-          <path d="M22.5 11.175H11.7375C11.2875 11.175 10.875 11.55 10.875 12.0375C10.875 12.4875 11.25 12.9 11.7375 12.9H22.5C22.95 12.9 23.3625 12.525 23.3625 12.0375C23.3625 11.55 22.95 11.175 22.5 11.175Z" fill="currentColor"/>
-          <path d="M22.5002 17.55H1.5002C1.0502 17.55 0.637695 17.925 0.637695 18.4125C0.637695 18.9 1.0127 19.275 1.5002 19.275H22.5002C22.9502 19.275 23.3627 18.9 23.3627 18.4125C23.3627 17.925 22.9502 17.55 22.5002 17.55Z" fill="currentColor"/>
-          <path d="M1.5002 6.4501H22.5002C22.9502 6.4501 23.3627 6.0751 23.3627 5.5876C23.3627 5.1001 22.9877 4.7251 22.5002 4.7251H1.5002C1.0502 4.7251 0.637695 5.1001 0.637695 5.5876C0.637695 6.0751 1.0502 6.4501 1.5002 6.4501Z" fill="currentColor"/>
+          <path
+            d="M22.5 11.175H11.7375C11.2875 11.175 10.875 11.55 10.875 12.0375C10.875 12.4875 11.25 12.9 11.7375 12.9H22.5C22.95 12.9 23.3625 12.525 23.3625 12.0375C23.3625 11.55 22.95 11.175 22.5 11.175Z"
+            fill="currentColor"></path>
+          <path
+            d="M22.5002 17.55H1.5002C1.0502 17.55 0.637695 17.925 0.637695 18.4125C0.637695 18.9 1.0127 19.275 1.5002 19.275H22.5002C22.9502 19.275 23.3627 18.9 23.3627 18.4125C23.3627 17.925 22.9502 17.55 22.5002 17.55Z"
+            fill="currentColor"></path>
+          <path
+            d="M1.5002 6.4501H22.5002C22.9502 6.4501 23.3627 6.0751 23.3627 5.5876C23.3627 5.1001 22.9877 4.7251 22.5002 4.7251H1.5002C1.0502 4.7251 0.637695 5.1001 0.637695 5.5876C0.637695 6.0751 1.0502 6.4501 1.5002 6.4501Z"
+            fill="currentColor"></path>
         </svg>
       </button>
       <a href="/" class="font-bold dark:text-white font-size-base">Forjandi</a>
@@ -69,19 +78,19 @@ const navItems = [
     class="fixed bottom-0 left-0 w-full bg-white dark:bg-black transform translate-y-full transition-transform duration-300 ease-in-out z-50 rounded-t-2xl shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.1)] dark:border-[1px] dark:border-white/40"
   >
     <div class="w-full flex justify-center pt-2">
-      <div class="w-10 h-1 bg-gray-300 dark:bg-gray-700 rounded-full mb-2 animate-pulse"></div>
+      <div
+        class="w-10 h-1 bg-gray-300 dark:bg-gray-700 rounded-full mb-2 animate-pulse"
+      >
+      </div>
     </div>
 
     <div class="p-4 flex flex-col gap-4 relative">
-      <Button>
-        <a href="#contact">Contáctanos</a>
-      </Button>
+      <Button client:load onClick={() => alert("Botón clickeado")}
+        >Contáctanos</Button
+      >
       {
         navItems.map((item) => (
-          <a
-            href={item.href}
-            class="dark:text-white py-2"
-          >
+          <a href={item.href} class="dark:text-white py-2">
             {item.label}
           </a>
         ))
@@ -106,8 +115,13 @@ const navItems = [
 
   /* Pulse animation for the line */
   @keyframes pulse {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.5; }
+    0%,
+    100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.5;
+    }
   }
 </style>
 
@@ -133,7 +147,7 @@ const navItems = [
   const toggleMenu = () => {
     isMenuOpen = !isMenuOpen;
     mobileMenu?.classList.toggle("translate-y-full", !isMenuOpen);
-    
+
     if (isMenuOpen) {
       overlay?.classList.remove("opacity-0", "pointer-events-none");
     } else {
@@ -142,32 +156,40 @@ const navItems = [
   };
 
   overlay?.addEventListener("click", closeMenu);
-  
+
   document.addEventListener("scroll", closeMenu);
 
   let lastScroll = 0;
   window.addEventListener("scroll", () => {
     const currentScroll = window.pageYOffset;
-    
+
     if (currentScroll > 0) {
-      navbar?.classList.add("border-b", "border-gray-200", "dark:border-gray-800");
+      navbar?.classList.add(
+        "border-b",
+        "border-gray-200",
+        "dark:border-gray-800"
+      );
     } else {
-      navbar?.classList.remove("border-b", "border-gray-200", "dark:border-gray-800");
+      navbar?.classList.remove(
+        "border-b",
+        "border-gray-200",
+        "dark:border-gray-800"
+      );
     }
-    
+
     lastScroll = currentScroll;
   });
 
   let touchStartY = 0;
   let touchEndY = 0;
 
-  mobileMenu?.addEventListener('touchstart', (e) => {
+  mobileMenu?.addEventListener("touchstart", (e) => {
     touchStartY = e.touches[0].clientY;
   });
 
-  mobileMenu?.addEventListener('touchmove', (e) => {
+  mobileMenu?.addEventListener("touchmove", (e) => {
     touchEndY = e.touches[0].clientY;
-    
+
     if (touchEndY < touchStartY && isMenuOpen) {
       closeMenu();
     }
@@ -175,25 +197,24 @@ const navItems = [
 
   const scrollToSection = (e: Event) => {
     const link = e.currentTarget as HTMLAnchorElement;
-    const href = link.getAttribute('href');
-    
-    if (href?.startsWith('#')) {
+    const href = link.getAttribute("href");
+
+    if (href?.startsWith("#")) {
       e.preventDefault();
-      const targetId = href.replace('#', '');
+      const targetId = href.replace("#", "");
       const element = document.getElementById(targetId);
-      
+
       if (element) {
         closeMenu();
-        element.scrollIntoView({ 
-          behavior: 'smooth',
-          block: 'start'
+        element.scrollIntoView({
+          behavior: "smooth",
+          block: "start",
         });
       }
     }
   };
 
-  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', scrollToSection);
+  document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+    anchor.addEventListener("click", scrollToSection);
   });
 </script>
-
