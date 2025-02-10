@@ -6,9 +6,7 @@ const Hero = () => {
       <h1 className="text-[30px] leading-[40px] py-20 font-light md:text-[60-px] md:leading-[60px] lg:text-[80px] lg:leading-[100px] uppercase">
         Inteligencia Artificial y Soluciones de Software a Medida
       </h1>
-      <Button>
-        <a href="#contact">Contáctanos</a>
-      </Button>
+      <Button href="#contact">Contáctanos</Button>
     </div>
   );
 };
