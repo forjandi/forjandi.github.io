@@ -13,6 +13,7 @@ export default defineConfig({
     react(),
   ],
   server: {
-    host: "forjandi.com",
+    host: "0.0.0.0",
+    //port: 3000,
   },
 });
