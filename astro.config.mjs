@@ -12,6 +12,7 @@ export default defineConfig({
     }),
     react(),
   ],
-  site: "https://forjandi.github.io/",
+  server: {
+    host: true,
+  },
 });
-
