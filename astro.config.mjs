@@ -13,6 +13,6 @@ export default defineConfig({
     react(),
   ],
   server: {
-    host: true,
+    host: "forjandi.com",
   },
 });
