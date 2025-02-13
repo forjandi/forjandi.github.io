@@ -63,13 +63,13 @@ const FormComponent: React.FC = () => {
   };
 
   return (
-    <div className="w-full p-5 flex flex-col gap-4 shadow-lg md:shadow-none rounded-xl backdrop-blur-xs bg-stone-100 dark:bg-zinc-800 bg-opacity-50 dark:bg-opacity-100">
+    <div className="w-full p-5 flex flex-col gap-4 shadow-lg md:shadow-none rounded-xl backdrop-blur-xs bg-stone-200 dark:bg-zinc-800 bg-opacity-50 dark:bg-opacity-100">
       <div className="grid w-full items-center gap-1.5">
         {Object.keys(initialFormData).map((key) => (
           <div className="grid w-full items-center gap-1.5" key={key}>
             <Label
               htmlFor={key}
-              className="text-lg lg:text-xl font-normal text-slate-900 dark:text-zinc-300"
+              className="text-base lg:text-xl font-normal text-slate-900 dark:text-zinc-300"
             >
               {formFieldsPatterns[key as keyof FormData].label}
               {formFieldsPatterns[key as keyof FormData].required && "*"}
@@ -77,7 +77,7 @@ const FormComponent: React.FC = () => {
             {key === "message" ? (
               <Textarea
                 id={key}
-                className="border-slate-200 dark:border-slate-300 shadow-none bg-[#F5F5F4] bg-opacity-50 dark:bg-zinc-800 dark:bg-opacity-100"
+                className="border-stone-300 dark:border-slate-300 shadow-none bg-transparent"
                 onChange={handleChange}
                 value={formData[key as keyof FormData]}
                 required={formFieldsPatterns[key as keyof FormData].required}
@@ -86,7 +86,7 @@ const FormComponent: React.FC = () => {
               <Input
                 type={key === "user_email" ? "email" : "text"}
                 id={key}
-                className="border-slate-200 dark:border-slate-300 shadow-none bg-[#F5F5F4] bg-opacity-50 dark:bg-zinc-800"
+                className="border-stone-300 dark:border-slate-300 shadow-none bg-transparent"
                 onChange={handleChange}
                 value={formData[key as keyof FormData]}
                 required={formFieldsPatterns[key as keyof FormData].required}
@@ -105,7 +105,7 @@ const FormComponent: React.FC = () => {
       <div className="text-right w-full">
         <Button
           onClick={handleSubmit}
-          className={`px-4 py-2 w-32 relative overflow-hidden ${sendStatus != null && "pointer-events-none"}`}
+          className={`text-base lg:text-xl px-4 py-2 w-32 relative overflow-hidden ${sendStatus != null && "pointer-events-none"}`}
         >
           <span
             className={`transition ${sendStatus != null ? "opacity-0 duration-100" : "opacity-100 duration-500"}`}
