@@ -5,9 +5,9 @@ import nodemailer from "nodemailer";
 export const POST: APIRoute = async ({ request }: { request: Request }) => {
   const formData = await request.json();
   const auth = nodemailer.createTransport({
-    host: "smtp.gmail.com",
-    port: 587,
-    secure: false,
+    host: import.meta.env.EMAIL_HOST,
+    port: import.meta.env.EMAIL_PORT,
+    secure: import.meta.env.EMAIL_SECURE,
     auth: {
       user: import.meta.env.USER_SENDER_EMAIL,
       pass: import.meta.env.USER_SENDER_PASSWORD,
